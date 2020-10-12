@@ -1,8 +1,10 @@
 
 package Controlador;
 
+import Modelo.Carrito;
 import Modelo.Materia;
 import Modelo.Persona;
+import ModeloDAO.CarritoDAO;
 import ModeloDAO.MateriaDAO;
 import ModeloDAO.PersonaDAO;
 import java.io.IOException;
@@ -29,8 +31,10 @@ public class Controlador extends HttpServlet {
     int cantidad;
     Persona p=new Persona();
     Materia m=new Materia();
+    Carrito c=new Carrito();
     PersonaDAO dao=new PersonaDAO();
     MateriaDAO madao=new MateriaDAO();
+    CarritoDAO carridao=new CarritoDAO();
     int id;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -73,7 +77,7 @@ public class Controlador extends HttpServlet {
             acceso=carrito;
         }else if(action.equalsIgnoreCase("Filtrar")){
           String materia=request.getParameter("txtMateria");
-           
+          
            //m.setNom(materia);
            dao.listar(materia);
            acceso=buscar;
@@ -87,7 +91,7 @@ public class Controlador extends HttpServlet {
             m.setDescripcion(descripcion);
             m.setValor_unitario(valor_Unidad);
             madao.add(m);
-            acceso=listarMaterias;
+            acceso=addmateria;
         }
         else if(action.equalsIgnoreCase("Registrar")){
             String nombre=request.getParameter("txtNombre");
@@ -104,10 +108,15 @@ public class Controlador extends HttpServlet {
             request.setAttribute("idper",request.getParameter("id"));
             acceso=edit;
         }else if(action.equalsIgnoreCase("AgregarCarrito")){
-            //request.setAttribute("idper",request.getParameter("id"));
-            //acceso=editMateria;
-            
-            acceso=carrito;
+            String referencia=request.getParameter("txtReferencia");
+            String cantidad=request.getParameter("txtReferencia");
+            System.out.println (referencia);
+            int id_producto= Integer.parseInt(request.getParameter("id")); 
+            c.setId_producto(id_producto);
+            c.setId_usuario(1);
+            c.setCantidad(10);
+            carridao.add(c);
+            acceso=listarMaterias;
         }
         else if(action.equalsIgnoreCase("Actualizar")){
             int identificacion=Integer.parseInt(request.getParameter("txtIdentificacion"));

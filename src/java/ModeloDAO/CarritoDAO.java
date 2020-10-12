@@ -50,7 +50,14 @@ public class CarritoDAO implements CRUDCARRITO{
 
     @Override
     public boolean add(Carrito mat) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql="INSERT INTO `carrito` (`id_usuario1`, `id_producto1`, `cantidad`) VALUES ("+mat.getId_usuario()+", "+mat.getId_producto()+", "+mat.getCantidad()+")";
+        try {
+            con=cn.getConnection();
+            ps=con.prepareStatement(sql);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+       return false;
     }
 
     @Override

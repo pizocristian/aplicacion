@@ -186,7 +186,7 @@ height: 100%;
         </nav>
         <div class="container">
             <div class="col-lg-6">
-                <h1>Agregar Materia</h1>
+                <h1>Agregar Producto</h1>
                 <form action="Controlador">
                     <a href="Controlador?accion=listarMaterias">Regresar</a><br>
                     <br>
@@ -195,7 +195,7 @@ height: 100%;
                     Descripcion:<br>
                     <input class="form-control" type="text" name="txtDescripcion"><br>
                     Valor Unidad:<br>
-                    <input class="form-control" type="text" name="txtValorUnidad"><br>
+                    <input class="form-control" type="number" name="txtValorUnidad"><br>
                     <input class="btn btn-primary" type="submit" name="accion" value="AgregarProducto">
                     
                 </form>

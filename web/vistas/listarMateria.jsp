@@ -184,7 +184,8 @@ height: 100%;
         </nav>
         <div class="container">
             <h1>Productos</h1>
-            <input class="form-control" type="text" name="txtCantidad" id="txtCantidad"><br>
+            <input class="form-control" type="text" name="txtCantidad" id="txtCantidad" ><br>
+            <input class="form-control" type="text" name="txtReferencia"><br>
             <br>
             <br>
             <table class="table table-bordered">
@@ -207,12 +208,12 @@ height: 100%;
                 %>
                 <tbody>
                     <tr>
-                        <td class="text-center"><%= mat.getId()%></td>
-                        <td class="text-center"><%= mat.getNom()%></td>
-                        <td><%= mat.getPeso()%></td>
+                        <td class="text-center"><%= mat.getReferencia()%></td>
+                        <td class="text-center"><%=mat.getDescripcion()%></td>
+                        <td><%= mat.getValor_unitario()%></td>
                         <td class="text-center">
-                            <a class="btn btn-primary" onclick="alerta()" href="Controlador?accion=AgregarCarrito&id=<%= mat.getId()%>">Agregrar al carrito</a>
-                            <a class="btn btn-danger" href="Controlador?accion=eliminarMaterias&id=<%= mat.getId()%>">Eliminar</a>
+                            <a class="btn btn-primary" onclick="alerta()" href="Controlador?accion=AgregarCarrito&id=<%= mat.getId_producto()%>">Agregrar al carrito</a>
+                            <a class="btn btn-danger" href="Controlador?accion=eliminarMaterias&id=<%= mat.getId_producto()%>">Eliminar</a>
                         </td>
                     </tr>
                     <%}%>
@@ -223,13 +224,13 @@ height: 100%;
         <script>
             function alerta(){
                 var mensaje;
-                var opcion = prompt("Introduzca la cantidad del producto:");
+                var opcion = prompt("Cantidad que desea adquirir del producto:");
  
                 if (opcion == null || opcion == "") {
                     mensaje = "Has cancelado o introducido el nombre vacío";
                 } else {
-                    mensaje = "Hola " + opcion;
-                    document.txtCantidad=opcion;
+                   
+                    opcion;
                   }
             }
         </script>
