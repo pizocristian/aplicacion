@@ -144,7 +144,7 @@ height: 100%;
           <div class="area"></div><nav class="main-menu">
             <ul>
                 <li>
-                    <a href="Controlador?accion=addMateria">
+                    <a href="Controlador?accion=addProducto">
                         <i class="fa fa-home fa-2x"></i>
                         <span class="nav-text">
                             Crear producto
@@ -153,7 +153,7 @@ height: 100%;
                   
                 </li>
                 <li class="has-subnav">
-                    <a href="Controlador?accion=listarMaterias">
+                    <a href="Controlador?accion=listarProductos">
                         <i class="fa fa-laptop fa-2x"></i>
                         <span class="nav-text">
                             Productos
@@ -162,7 +162,7 @@ height: 100%;
                     
                 </li>
                 <li class="has-subnav">
-                    <a href="Controlador?accion=listar">
+                    <a href="Controlador?accion=listarCarrito">
                        <i class="fa fa-list fa-2x"></i>
                         <span class="nav-text">
                             Ver carrito
@@ -174,7 +174,7 @@ height: 100%;
 
             <ul class="logout">
                 <li>
-                   <a href="Controlador?accion=volvere">
+                   <a href="Controlador?accion=inicio">
                          <i class="fa fa-power-off fa-2x"></i>
                         <span class="nav-text">
                             Cerrar sesión
@@ -199,29 +199,18 @@ height: 100%;
                 %>
 
                
-<div class="card" style="width: 18rem; border: 1px solid; margin-left: 20px; margin-bottom: 20px; float: left; height: 360px " >
+<div class="card" style="width: 18rem; border: 1px solid; margin-left: 20px; margin-bottom: 20px; float: left; height: 400px " >
   <ul class="list-group list-group-flush">
     <li class="list-group-item"><h2 class="card-title"><%= mat.getReferencia()%></h2></li>
     <li class="list-group-item"><img class="card-img-top" style="width: 100%" src="https://as01.epimg.net/meristation/imagenes/2019/10/11/betech/1570745248_291317_1570745364_noticia_normal_recorte1.jpg" alt="Card image cap">
   </li>
   <li class="list-group-item"><p class="card-text"><%= mat.getDescripcion()%></p></li>
+  <li class="list-group-item"><h4 class="card-text">$<%= mat.getValor_unitario()%></h4></li>
     <li class="list-group-item"><p class="card-text"><a class="btn btn-primary" href="Controlador?accion=AgregarCantidad&id=<%= mat.getId_producto()%>">Agregar al carrito</a></p></li>
   </ul>
 </div>
 
       <%}%>
-        <script>
-            function alerta(){
-                var mensaje;
-                var opcion = prompt("Cantidad que desea adquirir del producto:");
- 
-                if (opcion == null || opcion == "") {
-                    mensaje = "Has cancelado o introducido el nombre vacío";
-                } else {
-                   
-                    opcion;
-                  }
-            }
-        </script>
+       
     </body>
 </html>

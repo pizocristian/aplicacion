@@ -20,13 +20,13 @@ public class Controlador extends HttpServlet {
     
     String inicio="index.jsp";
     String listar="vistas/listar.jsp";
-    String listarMaterias="vistas/listarMateria.jsp";
+    String listarProductos="vistas/listarMateria.jsp";
     String add="vistas/add.jsp";
-    String addmateria="vistas/addMateria.jsp";
+    String addProducto="vistas/addMateria.jsp";
     String edit="vistas/edit.jsp";
     String editMateria="vistas/editMateria.jsp";
     String buscar="vistas/buscar.jsp";
-    String iniciar="vistas/inicio.jsp";
+    String listarCarrito="vistas/inicio.jsp";
     String carrito="vistas/carrito.jsp";
     String cantidad="vistas/cantidad.jsp";
    
@@ -62,19 +62,18 @@ public class Controlador extends HttpServlet {
         String action=request.getParameter("accion");
         if(action.equalsIgnoreCase("listar")){
             acceso=listar;            
-        }else if(action.equalsIgnoreCase("volver")){
-            System.out.println ("cantidad");
+        }else if(action.equalsIgnoreCase("inicio")){            
             acceso=inicio;
-        }else if(action.equalsIgnoreCase("volvere")){
-            acceso=iniciar;
-        }else if(action.equalsIgnoreCase("listarMaterias")){
-            acceso=listarMaterias;
+        }else if(action.equalsIgnoreCase("listarCarrito")){
+            acceso=listarCarrito;
+        }else if(action.equalsIgnoreCase("listarProductos")){
+            acceso=listarProductos;
         }else if(action.equalsIgnoreCase("buscar")){
             acceso=buscar;
         }else if(action.equalsIgnoreCase("add")){
             acceso=add;
-        }else if(action.equalsIgnoreCase("addMateria")){
-            acceso=addmateria;            
+        }else if(action.equalsIgnoreCase("addProducto")){
+            acceso=addProducto;            
         }else if(action.equalsIgnoreCase("carrito")){
             acceso=carrito;
         }else if(action.equalsIgnoreCase("producto")){
@@ -96,7 +95,7 @@ public class Controlador extends HttpServlet {
             m.setDescripcion(descripcion);
             m.setValor_unitario(valor_Unidad);
             madao.add(m);
-            acceso=addmateria;
+            acceso=listarProductos;
         }
         else if(action.equalsIgnoreCase("Registrar")){
             String nombre=request.getParameter("txtNombre");
@@ -107,7 +106,7 @@ public class Controlador extends HttpServlet {
             p.setCorreo(email);
             p.setPassword(password);
             dao.add(p);
-            acceso=iniciar;
+            acceso=listarProductos;
         }
         else if(action.equalsIgnoreCase("editar")){
             request.setAttribute("idper",request.getParameter("id"));
@@ -132,7 +131,7 @@ public class Controlador extends HttpServlet {
             c.setCantidad(cantidad);
             carridao.add(c);
             //acceso=listarMaterias;
-            acceso=listarMaterias;
+            acceso=listarProductos;
         }
         else if(action.equalsIgnoreCase("Actualizar")){
             int cantidad=Integer.parseInt(request.getParameter("txtCantidad"));
@@ -151,7 +150,7 @@ public class Controlador extends HttpServlet {
             m.setDescripcion(descripcion);  
             m.setValor_unitario(valor_unidad);
             madao.edit(m);
-            acceso=listarMaterias;
+            acceso=listarProductos;
         }
         else if(action.equalsIgnoreCase("eliminar")){
             id=Integer.parseInt(request.getParameter("id"));
@@ -163,7 +162,13 @@ public class Controlador extends HttpServlet {
             id=Integer.parseInt(request.getParameter("id"));
             m.setId_producto(id);
             madao.eliminar(id);
-            acceso=listarMaterias;
+            acceso=listarProductos;
+        }else if(action.equalsIgnoreCase("eliminarTodo")){
+           // JOptionPane.showMessageDialog(null, "Hello World");
+            id=1;
+            c.setId_usuario(id);
+            carridao.eliminar_todo(id);
+            acceso=listar;
         }
         RequestDispatcher vista=request.getRequestDispatcher(acceso);
         vista.forward(request, response);

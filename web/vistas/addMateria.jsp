@@ -145,7 +145,7 @@ height: 100%;
           <div class="area"></div><nav class="main-menu">
             <ul>
                 <li>
-                    <a href="Controlador?accion=addMateria">
+                    <a href="Controlador?accion=addProducto">
                         <i class="fa fa-home fa-2x"></i>
                         <span class="nav-text">
                             Crear producto
@@ -154,7 +154,7 @@ height: 100%;
                   
                 </li>
                 <li class="has-subnav">
-                    <a href="Controlador?accion=listarMaterias">
+                    <a href="Controlador?accion=listarProductos">
                         <i class="fa fa-laptop fa-2x"></i>
                         <span class="nav-text">
                             Productos
@@ -163,7 +163,7 @@ height: 100%;
                     
                 </li>
                 <li class="has-subnav">
-                    <a href="Controlador?accion=listar">
+                    <a href="Controlador?accion=listarCarrito">
                        <i class="fa fa-list fa-2x"></i>
                         <span class="nav-text">
                             Ver carrito
@@ -175,7 +175,7 @@ height: 100%;
 
             <ul class="logout">
                 <li>
-                   <a href="Controlador?accion=volvere">
+                   <a href="Controlador?accion=inicio">
                          <i class="fa fa-power-off fa-2x"></i>
                         <span class="nav-text">
                             Cerrar sesión
@@ -188,7 +188,6 @@ height: 100%;
             <div class="col-lg-6">
                 <h1>Agregar Producto</h1>
                 <form action="Controlador">
-                    <a href="Controlador?accion=listarMaterias">Regresar</a><br>
                     <br>
                     Referencia: <br>
                     <input class="form-control" type="text" name="txtReferencia"><br>

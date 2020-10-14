@@ -1,16 +1,16 @@
-<%-- 
-    Document   : inicio
-    Created on : 11-oct-2020, 10:56:25
-    Author     : cristian
---%>
-
+<%@page import="java.util.Iterator"%>
+<%@page import="Modelo.Carrito"%>
+<%@page import="java.util.List"%>
+<%@page import="ModeloDAO.CarritoDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.3/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-        <style>
+        <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <title>Productos</title>
+                <style>
             .fa-2x {
 font-size: 2em;
 }
@@ -141,10 +141,10 @@ height: 100%;
         </style>
     </head>
     <body>
-       <div class="area"></div><nav class="main-menu">
+          <div class="area"></div><nav class="main-menu">
             <ul>
                 <li>
-                    <a href="Controlador?accion=addMateria">
+                    <a href="Controlador?accion=addProducto">
                         <i class="fa fa-home fa-2x"></i>
                         <span class="nav-text">
                             Crear producto
@@ -153,7 +153,7 @@ height: 100%;
                   
                 </li>
                 <li class="has-subnav">
-                    <a href="Controlador?accion=listarMaterias">
+                    <a href="Controlador?accion=listarProductos">
                         <i class="fa fa-laptop fa-2x"></i>
                         <span class="nav-text">
                             Productos
@@ -162,7 +162,7 @@ height: 100%;
                     
                 </li>
                 <li class="has-subnav">
-                    <a href="Controlador?accion=listar">
+                    <a href="Controlador?accion=listarCarrito">
                        <i class="fa fa-list fa-2x"></i>
                         <span class="nav-text">
                             Ver carrito
@@ -174,7 +174,7 @@ height: 100%;
 
             <ul class="logout">
                 <li>
-                   <a href="Controlador?accion=volvere">
+                   <a href="Controlador?accion=inicio">
                          <i class="fa fa-power-off fa-2x"></i>
                         <span class="nav-text">
                             Cerrar sesión
@@ -183,5 +183,38 @@ height: 100%;
                 </li>  
             </ul>
         </nav>
+        <div class="container">
+            <h1>Tu Carrito</h1>
+            <br>
+            <a class="btn btn-success botones" href="Controlador?accion=listar">Ver detalles</a>
+            <br>
+            <br>
+            
+            
+                <%
+                    CarritoDAO madao=new CarritoDAO();
+                    List<Carrito>list=madao.listar();
+                    Iterator<Carrito>iter=list.iterator();
+                    Carrito mat=null;
+                    while(iter.hasNext()){
+                        mat=iter.next();
+                    
+                %>
+
+               
+<div class="card" style="width: 18rem; border: 1px solid; margin-left: 20px; margin-bottom: 20px; float: left; height: 400px " >
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><h2 class="card-title"><%= mat.getReferencia()%></h2></li>
+    <li class="list-group-item"><img class="card-img-top" style="width: 100%" src="https://as01.epimg.net/meristation/imagenes/2019/10/11/betech/1570745248_291317_1570745364_noticia_normal_recorte1.jpg" alt="Card image cap">
+  </li>
+  <li class="list-group-item"><p class="card-text"><%= mat.getDescripcion()%></p></li>
+  <li class="list-group-item">
+      Cantidad:<br>
+      <h4 class="card-text"><%= mat.getCantidad()%></h4></li>
+  </ul>
+</div>
+
+      <%}%>
+       
     </body>
 </html>

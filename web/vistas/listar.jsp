@@ -140,11 +140,11 @@ height: 100%;
 
         </style>
     </head>
-    <body>
-               <div class="area"></div><nav class="main-menu">
+     <body>
+          <div class="area"></div><nav class="main-menu">
             <ul>
                 <li>
-                    <a href="Controlador?accion=addMateria">
+                    <a href="Controlador?accion=addProducto">
                         <i class="fa fa-home fa-2x"></i>
                         <span class="nav-text">
                             Crear producto
@@ -153,7 +153,7 @@ height: 100%;
                   
                 </li>
                 <li class="has-subnav">
-                    <a href="Controlador?accion=listarMaterias">
+                    <a href="Controlador?accion=listarProductos">
                         <i class="fa fa-laptop fa-2x"></i>
                         <span class="nav-text">
                             Productos
@@ -162,7 +162,7 @@ height: 100%;
                     
                 </li>
                 <li class="has-subnav">
-                    <a href="Controlador?accion=listar">
+                    <a href="Controlador?accion=listarCarrito">
                        <i class="fa fa-list fa-2x"></i>
                         <span class="nav-text">
                             Ver carrito
@@ -174,7 +174,7 @@ height: 100%;
 
             <ul class="logout">
                 <li>
-                   <a href="Controlador?accion=volvere">
+                   <a href="Controlador?accion=inicio">
                          <i class="fa fa-power-off fa-2x"></i>
                         <span class="nav-text">
                             Cerrar sesión
@@ -184,7 +184,10 @@ height: 100%;
             </ul>
         </nav>
         <div class="container">
-            <h1>Carrito</h1>
+            <h1>Detalles del Carrito</h1>
+            <br>
+            <a class="btn btn-danger" href="Controlador?accion=eliminarTodo">Limpiar Carrito</a>
+            <a class="btn btn-success" href="Controlador?accion=listar">Realizar Compra</a>
             <br>
             <br>
             <table class="table table-bordered">
@@ -193,7 +196,7 @@ height: 100%;
                         <th class="text-center">REFERENCIA</th>
                         <th class="text-center">DESCRICION</th>
                         <th class="text-center">CANTIDAD</th>
-                        <th class="text-center">VALOR UNITARIO</th>
+                        
                         <th class="text-center">VALOR TOTAL</th>
                         <th class="text-center">ACCIONES</th>
                     </tr>
@@ -211,7 +214,7 @@ height: 100%;
                     <tr>
                         <td class="text-center"><%= carri.getReferencia()%></td>
                         <td class="text-center"><%= carri.getDescripcion()%></td>
-                        <td><%= carri.getValor_unitario()%></td>
+                        
                         <td><%= carri.getCantidad()%></td>
                         <td><%= carri.getTotal()%></td>
                         <td class="text-center">

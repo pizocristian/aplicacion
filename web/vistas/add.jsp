@@ -14,14 +14,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
-        <title>Agregar Estudiante</title>
+        <title>Agregar Usuario</title>
     </head>
     <body>
         <div class="container">
             <div class="col-lg-6">
                 <h1>Agregar Usuario</h1>
                 <form action="Controlador">
-                    <a href="Controlador?accion=volver">Regresar</a><br>
+                    <a href="Controlador?accion=inicio">Regresar</a><br>
                     <br>
                     Nombre:<br>
                     <input class="form-control" type="text" name="txtNombre"><br>

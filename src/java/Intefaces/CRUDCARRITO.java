@@ -18,5 +18,6 @@ public interface CRUDCARRITO {
     public boolean add(Carrito carrit);
     public boolean edit(Carrito carri);
     public boolean eliminar(int id);
+    public boolean eliminar_todo(int id);
     
 }

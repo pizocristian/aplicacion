@@ -103,5 +103,17 @@ public class CarritoDAO implements CRUDCARRITO{
         }
         return false;
     }
+
+    @Override
+    public boolean eliminar_todo(int id) {
+              String sql="delete from carrito where id_usuario1="+id;
+        try {
+            con=cn.getConnection();
+            ps=con.prepareStatement(sql);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+        return false;
+    }
     
 }

@@ -110,6 +110,7 @@ margin-left: 4px;
 	<div class="d-flex justify-content-center h-100">
 		<div class="card">
 			<div class="card-header">
+                            <br>
 				<h3>Tienda</h3>
 				<div class="d-flex justify-content-end social_icon">
 					<span><i class="fab fa-facebook-square"></i></span>
@@ -126,15 +127,18 @@ margin-left: 4px;
 						<input type="text" class="form-control" placeholder="correo">
 						
 					</div>
+                                    <br>
 					<div class="input-group form-group center-block correo">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-key"></i></span>
 						</div>
 						<input type="password" class="form-control" placeholder="contraseña">
 					</div>
+                                    <br>
+                                    <br>
 			
 					<div class="form-group">
-						<a class="btn btn-success botones" href="Controlador?accion=volvere">Entrar</a>
+						<a class="btn btn-success botones" href="Controlador?accion=listarProductos">Entrar</a>
 					</div>
 				</form>
 			</div>
