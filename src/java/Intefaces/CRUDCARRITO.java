@@ -15,8 +15,8 @@ import java.util.List;
 public interface CRUDCARRITO {
     public List listar();
     public Carrito list(int id);
-    public boolean add(Carrito mat);
-    public boolean edit(Carrito mat);
-    public boolean eliminar(String id);
+    public boolean add(Carrito carrit);
+    public boolean edit(Carrito carri);
+    public boolean eliminar(int id);
     
 }

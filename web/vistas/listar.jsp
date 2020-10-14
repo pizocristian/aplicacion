@@ -1,7 +1,8 @@
 <%@page import="java.util.Iterator"%>
-<%@page import="Modelo.Persona"%>
+<%@page import="Modelo.Materia"%>
+<%@page import="Modelo.Carrito"%>
 <%@page import="java.util.List"%>
-<%@page import="ModeloDAO.PersonaDAO"%>
+<%@page import="ModeloDAO.CarritoDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -183,37 +184,39 @@ height: 100%;
             </ul>
         </nav>
         <div class="container">
-            <h1>Estudiantes</h1>
-            <a class="btn btn-primary" href="Controlador?accion=volver">Volver</a>
-            <a class="btn btn-success" href="Controlador?accion=add">Agregar Nuevo Estudiante</a>
+            <h1>Carrito</h1>
             <br>
             <br>
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th class="text-center"># IDENTIFICACION</th>
-                        <th class="text-center">NOMBRE</th>
-                        <th class="text-center">MATERIA</th>
+                        <th class="text-center">REFERENCIA</th>
+                        <th class="text-center">DESCRICION</th>
+                        <th class="text-center">CANTIDAD</th>
+                        <th class="text-center">VALOR UNITARIO</th>
+                        <th class="text-center">VALOR TOTAL</th>
                         <th class="text-center">ACCIONES</th>
                     </tr>
                 </thead>
                 <%
-                    PersonaDAO dao=new PersonaDAO();
-                    List<Persona>list=dao.listar(null);
-                    Iterator<Persona>iter=list.iterator();
-                    Persona per=null;
+                    CarritoDAO dao=new CarritoDAO();
+                    List<Carrito>list=dao.listar();
+                    Iterator<Carrito>iter=list.iterator();
+                    Carrito carri=null;
                     while(iter.hasNext()){
-                        per=iter.next();
+                        carri=iter.next();
                     
                 %>
                 <tbody>
                     <tr>
-                        <td class="text-center"><%= per.getIdentificacion()%></td>
-                        <td class="text-center"><%= per.getNom()%></td>
-                        <td><%= per.getDni()%></td>
+                        <td class="text-center"><%= carri.getReferencia()%></td>
+                        <td class="text-center"><%= carri.getDescripcion()%></td>
+                        <td><%= carri.getValor_unitario()%></td>
+                        <td><%= carri.getCantidad()%></td>
+                        <td><%= carri.getTotal()%></td>
                         <td class="text-center">
-                            <a class="btn btn-warning" href="Controlador?accion=editar&id=<%= per.getIdentificacion()%>">Editar</a>
-                            <a class="btn btn-danger" href="Controlador?accion=eliminar&id=<%= per.getIdentificacion()%>">Remove</a>
+                            <a class="btn btn-warning" href="Controlador?accion=editar&id=<%= carri.getId_carrito()%>">Editar</a>
+                            <a class="btn btn-danger" href="Controlador?accion=eliminar&id=<%= carri.getId_carrito()%>">Eliminar</a>
                         </td>
                     </tr>
                     <%}%>

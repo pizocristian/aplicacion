@@ -19,23 +19,27 @@ public class CarritoDAO implements CRUDCARRITO{
     Connection con;
     PreparedStatement ps;
     ResultSet rs;
-    Carrito m=new Carrito();
-
+    Carrito carri=new Carrito();
     @Override
     public List listar() {
-        ArrayList<Materia>list=new ArrayList<>();
-        String sql="SELECT producto.id_producto AS id_producto, producto.referencia AS referencia, producto.descripcion AS descripcion, producto.valor_unitario AS valor_unitario FROM `producto` INNER JOIN carrito ON producto.id_producto = carrito.id_producto1";
+        ArrayList<Carrito>list=new ArrayList<>();
+        //String sql="SELECT producto.id_producto AS id_producto, producto.referencia AS referencia, producto.descripcion AS descripcion, producto.valor_unitario AS valor_unitario FROM `producto` INNER JOIN carrito ON producto.id_producto = carrito.id_producto1";
+        String sql="SELECT producto.id_producto AS id_producto, producto.referencia AS referencia, producto.descripcion AS descripcion, producto.valor_unitario AS valor_unitario, cantidad, id_carrito, cantidad*valor_unitario AS total FROM `carrito` INNER JOIN producto ON carrito.id_producto1 = producto.id_producto ";
+        
         try {
             con=cn.getConnection();
             ps=con.prepareStatement(sql);
             rs=ps.executeQuery();
             while(rs.next()){
-                Materia mat=new Materia();
-                mat.setId_producto(Integer. parseInt (rs.getString("id_producto")));                
-                mat.setReferencia(rs.getString("referencia"));
-                mat.setDescripcion(rs.getString("descripcion"));
-                mat.setValor_unitario(Integer.parseInt(rs.getString("valor_unitario")));                
-                list.add(mat);
+                Carrito carri=new Carrito();              
+                carri.setId_producto(Integer. parseInt (rs.getString("id_producto")));                
+                carri.setReferencia(rs.getString("referencia"));
+                carri.setDescripcion(rs.getString("descripcion"));
+                carri.setValor_unitario(Integer.parseInt(rs.getString("valor_unitario")));
+                carri.setCantidad(Integer.parseInt(rs.getString("cantidad")));
+                carri.setId_carrito(Integer.parseInt(rs.getString("id_carrito")));
+                carri.setTotal(Integer.parseInt(rs.getString("total")));
+                list.add(carri);
             }
     
         } catch (Exception e) {
@@ -45,12 +49,28 @@ public class CarritoDAO implements CRUDCARRITO{
 
     @Override
     public Carrito list(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql="SELECT producto.id_producto AS id_producto, producto.referencia AS referencia, producto.descripcion AS descripcion, producto.valor_unitario AS valor_unitario, cantidad, id_carrito FROM `carrito` INNER JOIN producto ON carrito.id_producto1 = producto.id_producto where id_carrito="+id;
+        
+        try {
+            con=cn.getConnection();
+            ps=con.prepareStatement(sql);
+            rs=ps.executeQuery();
+            while(rs.next()){
+                carri.setId_carrito(Integer.parseInt(rs.getString("id_carrito")));
+                carri.setReferencia(rs.getString("referencia"));
+                carri.setDescripcion(rs.getString("descripcion"));
+                carri.setValor_unitario(Integer.parseInt(rs.getString("valor_unitario")));
+                carri.setCantidad(Integer.parseInt(rs.getString("cantidad")));                  
+                
+            }
+        } catch (Exception e) {
+        }
+        return carri;
     }
 
     @Override
-    public boolean add(Carrito mat) {
-        String sql="INSERT INTO `carrito` (`id_usuario1`, `id_producto1`, `cantidad`) VALUES ("+mat.getId_usuario()+", "+mat.getId_producto()+", "+mat.getCantidad()+")";
+    public boolean add(Carrito carri) {
+        String sql="INSERT INTO `carrito` (`id_usuario1`, `id_producto1`, `cantidad`) VALUES ("+carri.getId_usuario()+", "+carri.getId_producto()+", "+carri.getCantidad()+")";
         try {
             con=cn.getConnection();
             ps=con.prepareStatement(sql);
@@ -61,13 +81,27 @@ public class CarritoDAO implements CRUDCARRITO{
     }
 
     @Override
-    public boolean edit(Carrito mat) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean edit(Carrito carri) {
+   String sql="UPDATE `carrito` SET `cantidad`='"+carri.getCantidad()+"' WHERE `carrito`.`id_carrito`="+carri.getId_carrito();
+        try {
+            con=cn.getConnection();
+            ps=con.prepareStatement(sql);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+        return false;
     }
 
     @Override
-    public boolean eliminar(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean eliminar(int id) {
+        String sql="delete from carrito where id_carrito="+id;
+        try {
+            con=cn.getConnection();
+            ps=con.prepareStatement(sql);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+        return false;
     }
     
 }

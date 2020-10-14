@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.3/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <title>Productos</title>
@@ -184,19 +185,9 @@ height: 100%;
         </nav>
         <div class="container">
             <h1>Productos</h1>
-            <input class="form-control" type="text" name="txtCantidad" id="txtCantidad" ><br>
-            <input class="form-control" type="text" name="txtReferencia"><br>
             <br>
             <br>
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th class="text-center">Referencia</th>
-                        <th class="text-center">Descripción</th>
-                        <th class="text-center">Valor Unitario</th>
-                        <th class="text-center">ACCIONES</th>
-                    </tr>
-                </thead>
+            
                 <%
                     MateriaDAO madao=new MateriaDAO();
                     List<Materia>list=madao.listar();
@@ -206,21 +197,19 @@ height: 100%;
                         mat=iter.next();
                     
                 %>
-                <tbody>
-                    <tr>
-                        <td class="text-center"><%= mat.getReferencia()%></td>
-                        <td class="text-center"><%=mat.getDescripcion()%></td>
-                        <td><%= mat.getValor_unitario()%></td>
-                        <td class="text-center">
-                            <a class="btn btn-primary" onclick="alerta()" href="Controlador?accion=AgregarCarrito&id=<%= mat.getId_producto()%>">Agregrar al carrito</a>
-                            <a class="btn btn-danger" href="Controlador?accion=eliminarMaterias&id=<%= mat.getId_producto()%>">Eliminar</a>
-                        </td>
-                    </tr>
-                    <%}%>
-                </tbody>
-            </table>
 
-        </div>
+               
+<div class="card" style="width: 18rem; border: 1px solid; margin-left: 20px; margin-bottom: 20px; float: left; height: 360px " >
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><h2 class="card-title"><%= mat.getReferencia()%></h2></li>
+    <li class="list-group-item"><img class="card-img-top" style="width: 100%" src="https://as01.epimg.net/meristation/imagenes/2019/10/11/betech/1570745248_291317_1570745364_noticia_normal_recorte1.jpg" alt="Card image cap">
+  </li>
+  <li class="list-group-item"><p class="card-text"><%= mat.getDescripcion()%></p></li>
+    <li class="list-group-item"><p class="card-text"><a class="btn btn-primary" href="Controlador?accion=AgregarCantidad&id=<%= mat.getId_producto()%>">Agregar al carrito</a></p></li>
+  </ul>
+</div>
+
+      <%}%>
         <script>
             function alerta(){
                 var mensaje;

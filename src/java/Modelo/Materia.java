@@ -14,15 +14,34 @@ public class Materia {
      String referencia;
      String descripcion;
      int valor_unitario;
-    
+     int cantidad;
+     int id_carrito;
      public Materia() {
     }
      
-     public Materia( int id_producto, String referencia, String descripcion, int valor_unitario) {
+     public Materia( int id_producto, String referencia, String descripcion, int valor_unitario, int cantidad,int id_carrito) {
         this.id_producto = id_producto;
         this.referencia = referencia;
         this.descripcion = descripcion;
         this.valor_unitario = valor_unitario;
+        this.cantidad = cantidad;
+        this.id_carrito = id_carrito;
+    }
+
+    public int getId_carrito() {
+        return id_carrito;
+    }
+
+    public void setId_carrito(int id_carrito) {
+        this.id_carrito = id_carrito;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
 
     public int getId_producto() {

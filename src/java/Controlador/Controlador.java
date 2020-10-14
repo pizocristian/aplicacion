@@ -28,7 +28,8 @@ public class Controlador extends HttpServlet {
     String buscar="vistas/buscar.jsp";
     String iniciar="vistas/inicio.jsp";
     String carrito="vistas/carrito.jsp";
-    int cantidad;
+    String cantidad="vistas/cantidad.jsp";
+   
     Persona p=new Persona();
     Materia m=new Materia();
     Carrito c=new Carrito();
@@ -62,6 +63,7 @@ public class Controlador extends HttpServlet {
         if(action.equalsIgnoreCase("listar")){
             acceso=listar;            
         }else if(action.equalsIgnoreCase("volver")){
+            System.out.println ("cantidad");
             acceso=inicio;
         }else if(action.equalsIgnoreCase("volvere")){
             acceso=iniciar;
@@ -75,7 +77,10 @@ public class Controlador extends HttpServlet {
             acceso=addmateria;            
         }else if(action.equalsIgnoreCase("carrito")){
             acceso=carrito;
-        }else if(action.equalsIgnoreCase("Filtrar")){
+        }else if(action.equalsIgnoreCase("producto")){
+            acceso=cantidad;
+        }
+        else if(action.equalsIgnoreCase("Filtrar")){
           String materia=request.getParameter("txtMateria");
           
            //m.setNom(materia);
@@ -107,26 +112,35 @@ public class Controlador extends HttpServlet {
         else if(action.equalsIgnoreCase("editar")){
             request.setAttribute("idper",request.getParameter("id"));
             acceso=edit;
-        }else if(action.equalsIgnoreCase("AgregarCarrito")){
-            String referencia=request.getParameter("txtReferencia");
-            String cantidad=request.getParameter("txtReferencia");
-            System.out.println (referencia);
-            int id_producto= Integer.parseInt(request.getParameter("id")); 
+        }else if(action.equalsIgnoreCase("AgregarCantidad")){ 
+            request.setAttribute("idper",request.getParameter("id"));
+            //String cantidad=request.getParameter("txtCantidad");
+            //System.out.println (cantidad);
+            //int id_producto= Integer.parseInt(request.getParameter("id")); 
+            //acceso=listarMaterias;
+            acceso=cantidad;
+        }
+        else if(action.equalsIgnoreCase("AgregarCarrito")){            
+            int id_producto=Integer.parseInt(request.getParameter("txtId"));
+            System.out.println (id_producto);
+            int cantidad=Integer.parseInt(request.getParameter("txtCantidad"));
+            System.out.println (cantidad);
+            //int id_producto= Integer.parseInt(request.getParameter("id")); 
+            //System.out.println (id);
             c.setId_producto(id_producto);
             c.setId_usuario(1);
-            c.setCantidad(10);
+            c.setCantidad(cantidad);
             carridao.add(c);
+            //acceso=listarMaterias;
             acceso=listarMaterias;
         }
         else if(action.equalsIgnoreCase("Actualizar")){
-            int identificacion=Integer.parseInt(request.getParameter("txtIdentificacion"));
-            String materia=request.getParameter("txtMateria");
-            String nom=request.getParameter("txtNom");
-            p.setId(identificacion);
-            p.setNombre(materia);
-            p.setCorreo(nom);
-            dao.edit(p);
-            acceso=iniciar;
+            int cantidad=Integer.parseInt(request.getParameter("txtCantidad"));
+            int id_carrito=Integer.parseInt(request.getParameter("txtId_carrito")); 
+            c.setId_carrito(id_carrito);
+            c.setCantidad(cantidad);
+            carridao.edit(c);
+            acceso=listar;
         }else if(action.equalsIgnoreCase("ActualizarMateria")){
             int id_producto=Integer.parseInt(request.getParameter("txtId"));
             String referencia=request.getParameter("txtNom");
@@ -141,8 +155,8 @@ public class Controlador extends HttpServlet {
         }
         else if(action.equalsIgnoreCase("eliminar")){
             id=Integer.parseInt(request.getParameter("id"));
-            p.setId(id);
-            //dao.eliminar(id);
+            c.setId_carrito(id);
+            carridao.eliminar(id);
             acceso=listar;
         }else if(action.equalsIgnoreCase("eliminarMaterias")){
            // JOptionPane.showMessageDialog(null, "Hello World");
