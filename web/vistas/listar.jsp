@@ -187,7 +187,7 @@ height: 100%;
             <h1>Detalles del Carrito</h1>
             <br>
             <a class="btn btn-danger" href="Controlador?accion=eliminarTodo">Limpiar Carrito</a>
-            <a class="btn btn-success" href="Controlador?accion=listar">Realizar Compra</a>
+            <a class="btn btn-success" onclick='alert("Gracias por tu compra")'href="Controlador?accion=eliminarTodo">Realizar Compra</a>
             <br>
             <br>
             <table class="table table-bordered">
